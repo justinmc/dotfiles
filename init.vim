@@ -52,5 +52,6 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
