@@ -53,5 +53,7 @@ Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'pangloss/vim-javascript'
+Plug 'https://github.com/hail2u/vim-css3-syntax.git'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
