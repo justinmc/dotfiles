@@ -48,6 +48,9 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
+" call greppage on the current line
+nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -55,5 +58,6 @@ Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'pangloss/vim-javascript'
 Plug 'https://github.com/hail2u/vim-css3-syntax.git'
 Plug 'mxw/vim-jsx'
+Plug 'evidanary/grepg.vim'
 
 call plug#end()
