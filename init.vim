@@ -15,7 +15,7 @@ set smarttab
 
 " character limit column
 highlight ColorColumn ctermbg=0
-set colorcolumn=100
+set colorcolumn=80
 
 " Easy split switching
 nmap <silent> <c-k> :wincmd k<CR>
