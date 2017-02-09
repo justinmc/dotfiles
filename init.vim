@@ -35,6 +35,9 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
+" Remap escape
+imap jj <Esc>
+
 " eslint
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost,BufEnter * Neomake
@@ -51,6 +54,9 @@ call plug#begin('~/.vim/plugged')
 " call greppage on the current line
 nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
 
+" use vim-jsx on .js files too
+let g:jsx_ext_required = 0
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -59,5 +65,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'https://github.com/hail2u/vim-css3-syntax.git'
 Plug 'mxw/vim-jsx'
 Plug 'evidanary/grepg.vim'
+Plug 'https://github.com/yaymukund/vim-haxe.git'
 
 call plug#end()
