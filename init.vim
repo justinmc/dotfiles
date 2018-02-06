@@ -1,7 +1,12 @@
+" OMG How do I reload my config without closing vim??
+" :so ~/.config/nvim/init.vim
+" :PlugInstall
+
 set number
 set ignorecase
 set smartcase
 set scrolloff=12 " space between cursor and bottom of screen before scroll
+let mapleader = ","
 
 " Preserve undo/redo history
 set undofile
@@ -36,11 +41,19 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Remap escape
-imap jj <Esc>
+imap jk <Esc>
+
+" react to the mouse as well
+set mouse=a
 
 " eslint
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost,BufEnter * Neomake
+nmap <Leader>n :lnext<CR> " next error/warning
+nmap <Leader>N :lprev<CR> " previous error/warning
+
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1 " jsdoc syntax highlighting
 
 " disable folding
 set nofoldenable
@@ -57,6 +70,11 @@ nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
 " use vim-jsx on .js files too
 let g:jsx_ext_required = 0
 
+" elm syntax highlighting
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -66,5 +84,8 @@ Plug 'https://github.com/hail2u/vim-css3-syntax.git'
 Plug 'mxw/vim-jsx'
 Plug 'evidanary/grepg.vim'
 Plug 'https://github.com/yaymukund/vim-haxe.git'
+Plug 'tpope/vim-fugitive'
+Plug 'elmcast/elm-vim'
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
