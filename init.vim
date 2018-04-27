@@ -75,6 +75,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:elm_syntastic_show_warnings = 1
 
+" flow syntax highlighting
+let g:javascript_plugin_flow = 1
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -87,5 +90,6 @@ Plug 'https://github.com/yaymukund/vim-haxe.git'
 Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'flowtype/vim-flow'
 
 call plug#end()
