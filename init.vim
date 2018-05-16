@@ -78,6 +78,13 @@ let g:elm_syntastic_show_warnings = 1
 " flow syntax highlighting
 let g:javascript_plugin_flow = 1
 
+" deoplete code completion
+let g:deoplete#enable_at_startup = 1
+
+" Set paths to homebrew pythons
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -91,5 +98,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 call plug#end()
