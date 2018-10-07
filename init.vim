@@ -100,5 +100,6 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
