@@ -85,6 +85,11 @@ let g:deoplete#enable_at_startup = 1
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" Dart
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let dart_style_guide = 2
+autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -101,5 +106,6 @@ Plug 'flowtype/vim-flow'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
 
 call plug#end()
