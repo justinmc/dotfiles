@@ -1,5 +1,5 @@
 " OMG How do I reload my config without closing vim??
-" :so ~/.config/nvim/init.vim
+" :so %
 " :PlugInstall
 
 set number
@@ -107,5 +107,10 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
-
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
+
+" Solarized colors
+syntax enable
+set background=dark
+colorscheme solarized
