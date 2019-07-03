@@ -108,6 +108,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'altercation/vim-colors-solarized'
+Plug 'google/vim-searchindex'
 call plug#end()
 
 " Solarized colors
