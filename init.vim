@@ -107,11 +107,14 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
 call plug#end()
 
 " Solarized colors
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+
+" Ubuntu Desktop stuff
+let g:python3_host_prog='/usr/bin/python3'
