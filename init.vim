@@ -109,6 +109,10 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
+Plug 'neovim/nvim-lsp'
+Plug 'Shougo/deoplete-lsp'
+Plug 'ervandew/supertab'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " Solarized colors
@@ -118,3 +122,21 @@ set background=dark
 
 " Ubuntu Desktop stuff
 let g:python3_host_prog='/usr/bin/python3'
+
+" Rust stuff
+" setup rust_analyzer LSP (IDE features)
+lua require'nvim_lsp'.rust_analyzer.setup{}
+
+" Use LSP omni-completion in Rust files
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+" customise deoplete                                                                                                                                                     " maximum candidate window length
+call deoplete#custom#source('_', 'max_menu_width', 80)
+
+" Press Tab to scroll _down_ a list of auto-completions
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" rustfmt on write using autoformat
+autocmd BufWrite * :Autoformat
+
+nnoremap <leader>c :!cargo clippy
