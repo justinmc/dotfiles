@@ -12,8 +12,8 @@ let mapleader = ","
 set undofile
 
 " 2 space indentation
-set tabstop=4
-set softtabstop=0
+set tabstop=2
+set softtabstop=2
 set expandtab
 set shiftwidth=2
 set smarttab
@@ -137,6 +137,6 @@ call deoplete#custom#source('_', 'max_menu_width', 80)
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " rustfmt on write using autoformat
-autocmd BufWrite * :Autoformat
+" autocmd BufWrite * :Autoformat
 
 nnoremap <leader>c :!cargo clippy
