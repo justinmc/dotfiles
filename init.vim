@@ -28,6 +28,10 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
+" Colors!
+syntax enable
+set background=light
+
 " Copy to system clipboard by hitting leader first
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -79,7 +83,9 @@ let g:elm_syntastic_show_warnings = 1
 let g:javascript_plugin_flow = 1
 
 " deoplete code completion
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Set paths to homebrew pythons
 let g:python_host_prog = '/usr/local/bin/python'
@@ -87,8 +93,9 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
 let g:lsc_server_commands = {'dart': 'dart_language_server'}
+" let g:lsc_auto_map = v:true " Not using b/c breaks ctrl-p
 let dart_style_guide = 2
-autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
+" autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
@@ -103,16 +110,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+if has('nvim')
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  " Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
-Plug 'neovim/nvim-lsp'
-Plug 'Shougo/deoplete-lsp'
 Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
+Plug 'google/vim-searchindex'
+
 call plug#end()
 
 " Solarized colors
@@ -129,9 +144,6 @@ lua require'nvim_lsp'.rust_analyzer.setup{}
 
 " Use LSP omni-completion in Rust files
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-" customise deoplete                                                                                                                                                     " maximum candidate window length
-call deoplete#custom#source('_', 'max_menu_width', 80)
 
 " Press Tab to scroll _down_ a list of auto-completions
 let g:SuperTabDefaultCompletionType = "<c-n>"
