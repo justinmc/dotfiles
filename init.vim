@@ -140,10 +140,11 @@ let g:python3_host_prog='/usr/bin/python3'
 
 " Rust stuff
 " setup rust_analyzer LSP (IDE features)
-lua require'nvim_lsp'.rust_analyzer.setup{}
+" TODO use lsc or whatever instead of lsp for rust?
+" lua require'nvim_lsp'.rust_analyzer.setup{}
 
 " Use LSP omni-completion in Rust files
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " Press Tab to scroll _down_ a list of auto-completions
 let g:SuperTabDefaultCompletionType = "<c-n>"
