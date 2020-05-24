@@ -1,5 +1,5 @@
 " OMG How do I reload my config without closing vim??
-" :so ~/.config/nvim/init.vim
+" :so %
 " :PlugInstall
 
 set number
@@ -123,6 +123,11 @@ Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 Plug 'altercation/vim-colors-solarized'
+Plug 'google/vim-searchindex'
 
 call plug#end()
+
+" Solarized colors
+syntax enable
+set background=dark
 colorscheme solarized
