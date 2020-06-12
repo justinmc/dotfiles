@@ -82,13 +82,19 @@ let g:javascript_plugin_flow = 1
 let g:deoplete#enable_at_startup = 1
 
 " Set paths to homebrew pythons
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" I changed this for my Google machine
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
+" Googleset nocompatible
+source /usr/share/vim/google/google.vim
+filetype plugin indent on
+syntax on
 
 " Dart
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
+"let g:lsc_server_commands = {'dart': 'dart_language_server'}
 let dart_style_guide = 2
-autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
+" autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
@@ -103,11 +109,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
+"Plug 'natebosch/vim-lsc'
 Plug 'altercation/vim-colors-solarized'
+"Plug 'w0rp/ale'
 Plug 'google/vim-searchindex'
 call plug#end()
 
