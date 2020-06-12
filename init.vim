@@ -28,6 +28,10 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
+" Colors!
+syntax enable
+set background=light
+
 " Copy to system clipboard by hitting leader first
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -79,7 +83,9 @@ let g:elm_syntastic_show_warnings = 1
 let g:javascript_plugin_flow = 1
 
 " deoplete code completion
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Set paths to homebrew pythons
 " I changed this for my Google machine
@@ -92,7 +98,8 @@ filetype plugin indent on
 syntax on
 
 " Dart
-"let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
+" let g:lsc_auto_map = v:true " Not using b/c breaks ctrl-p
 let dart_style_guide = 2
 " autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
 
@@ -109,13 +116,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+if has('nvim')
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  " Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-"Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 Plug 'altercation/vim-colors-solarized'
 "Plug 'w0rp/ale'
 Plug 'google/vim-searchindex'
+
 call plug#end()
 
 " Solarized colors
