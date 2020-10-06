@@ -1,6 +1,7 @@
-" OMG How do I reload my config without closing vim??
+" How do I reload my config without closing vim??
 " :so %
 " :PlugInstall
+" :PlugUpdate
 
 set number
 set ignorecase
@@ -92,8 +93,6 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
-" let g:lsc_auto_map = v:true " Not using b/c breaks ctrl-p
 let dart_style_guide = 2
 " autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
 
@@ -119,8 +118,7 @@ else
 endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
+" I previously tried using lsc, but it makes nvim slow in big files.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
@@ -129,5 +127,5 @@ call plug#end()
 
 " Solarized colors
 syntax enable
-set background=dark
+" set background=dark
 colorscheme solarized
