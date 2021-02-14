@@ -1,6 +1,7 @@
-" OMG How do I reload my config without closing vim??
+" How do I reload my config without closing vim??
 " :so %
 " :PlugInstall
+" :PlugUpdate
 
 set number
 set ignorecase
@@ -92,10 +93,20 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
-" let g:lsc_auto_map = v:true " Not using b/c breaks ctrl-p
 let dart_style_guide = 2
 " autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
+
+" coc-snippets (installed with :CocInstall coc-snippets)
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/neomake/neomake.git'
@@ -110,6 +121,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
+Plug 'vim-scripts/loremipsum'
+Plug 'honza/vim-snippets'
 if has('nvim')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -119,12 +132,10 @@ else
 endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
 "Plug 'altercation/vim-colors-solarized'
-Plug 'google/vim-searchindex'
 Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
+" I previously tried using lsc, but it makes nvim slow in big files.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 Plug 'google/vim-searchindex'
 
