@@ -120,11 +120,11 @@ endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
 Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
-Plug 'natebosch/vim-lsc-dart'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 Plug 'google/vim-searchindex'
 
