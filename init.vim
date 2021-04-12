@@ -64,7 +64,16 @@ let g:javascript_plugin_jsdoc = 1 " jsdoc syntax highlighting
 set nofoldenable
 
 " ctrlp
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" Use ag for indexing, which is faster. Also, ignore irrelevant files like.
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+" Use ctrlp-py-matcher, which is more accurate.
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -109,6 +118,7 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
 Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
