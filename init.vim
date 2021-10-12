@@ -2,7 +2,11 @@
 " :so %
 " :PlugInstall
 " :PlugUpdate
-" Test
+" :CocInstall coc-flutter
+" :CocInstall coc-snippets
+"
+" If you want to uninstall something, remove the line, run ":so %", then run
+" ":PlugClean"
 
 set number
 set ignorecase
@@ -95,12 +99,13 @@ let g:javascript_plugin_flow = 1
 
 " deoplete code completion
 " let g:deoplete#enable_at_startup = 1
+"
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Set paths to homebrew pythons
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog = '/usr/local/bin/python'
+" let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
 let dart_style_guide = 2
@@ -250,6 +255,16 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" coc shortcuts
+try
+    nmap <Leader>n :call CocAction('diagnosticNext')<cr>
+    nmap <Leader>N :call CocAction('diagnosticPrevious')<cr>
+endtry
+
+" lsc
+" set shortmess-=F
+" let g:lsc_server_commands = {'dart': 'dart_language_server'}
+
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
 Plug 'https://github.com/neomake/neomake.git'
@@ -276,7 +291,9 @@ endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 " I previously tried using lsc, but it makes nvim slow in big files.
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'flutter.trace.server': 'on', 'flutter.autoOpenDevLog': 'true'} " Also do: :CocInstall coc-flutter
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
 Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
 
