@@ -2,11 +2,6 @@
 " :so %
 " :PlugInstall
 " :PlugUpdate
-" :CocInstall coc-flutter
-" :CocInstall coc-snippets
-"
-" If you want to uninstall something, remove the line, run ":so %", then run
-" ":PlugClean"
 
 set number
 set ignorecase
@@ -18,8 +13,8 @@ let mapleader = ","
 set undofile
 
 " 2 space indentation
-set tabstop=2
-set softtabstop=2
+set tabstop=4
+set softtabstop=0
 set expandtab
 set shiftwidth=2
 set smarttab
@@ -99,13 +94,12 @@ let g:javascript_plugin_flow = 1
 
 " deoplete code completion
 " let g:deoplete#enable_at_startup = 1
-"
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Set paths to homebrew pythons
-" let g:python_host_prog = '/usr/local/bin/python'
-" let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
 let dart_style_guide = 2
@@ -255,16 +249,6 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" coc shortcuts
-try
-    nmap <Leader>n :call CocAction('diagnosticNext')<cr>
-    nmap <Leader>N :call CocAction('diagnosticPrevious')<cr>
-endtry
-
-" lsc
-" set shortmess-=F
-" let g:lsc_server_commands = {'dart': 'dart_language_server'}
-
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
 Plug 'https://github.com/neomake/neomake.git'
@@ -290,37 +274,14 @@ else
 endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'ervandew/supertab'
-Plug 'Chiel92/vim-autoformat'
 " I previously tried using lsc, but it makes nvim slow in big files.
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'flutter.trace.server': 'on', 'flutter.autoOpenDevLog': 'true'} " Also do: :CocInstall coc-flutter
-" Plug 'natebosch/vim-lsc'
-" Plug 'natebosch/vim-lsc-dart'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
+Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
 
 call plug#end()
 
 " Solarized colors
 syntax enable
-set background=dark
-"colorscheme solarized
-
-" Ubuntu Desktop stuff
-let g:python3_host_prog='/usr/bin/python3'
-
-" Rust stuff
-" setup rust_analyzer LSP (IDE features)
-" TODO use lsc or whatever instead of lsp for rust?
-" lua require'nvim_lsp'.rust_analyzer.setup{}
-
-" Use LSP omni-completion in Rust files
-" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-" Press Tab to scroll _down_ a list of auto-completions
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" rustfmt on write using autoformat
-" autocmd BufWrite * :Autoformat
-
-nnoremap <leader>c :!cargo clippy
+" set background=dark
+colorscheme solarized
