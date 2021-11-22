@@ -1,0 +1,78 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet stless_full
+class $1 extends StatelessWidget {
+  const $1({
+	Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      $2
+    );
+  }
+}
+endsnippet
+
+snippet stful_full
+class $1 extends StatefulWidget {
+  const $1({
+	Key? key,
+  }) : super(key: key);
+
+  @override
+  _$1State createState() => _$1State();
+}
+
+class _$1State extends State<$1> {
+  @override
+  void initState() {
+	super.initState();
+  }
+
+  @override
+  void dispose() {
+	super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      $2
+    );
+  }
+}
+endsnippet
+
+snippet stacktrace
+try {
+  throw FlutterError('Just doing this to get a stacktrace');
+} catch (error, stacktrace) {
+  print(stracktrace);
+}
+endsnippet

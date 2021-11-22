@@ -2,11 +2,6 @@
 " :so %
 " :PlugInstall
 " :PlugUpdate
-" :CocInstall coc-flutter
-" :CocInstall coc-snippets
-"
-" If you want to uninstall something, remove the line, run ":so %", then run
-" ":PlugClean"
 
 set number
 set ignorecase
@@ -68,11 +63,6 @@ let g:javascript_plugin_jsdoc = 1 " jsdoc syntax highlighting
 " disable folding
 set nofoldenable
 
-" [buffer number] followed by filename:
-set statusline=[%n]\ %t
-" show line#:column# on the right hand side
-set statusline+=%=%l:%c
-
 " ctrlp
 " Use ag for indexing, which is faster. Also, ignore irrelevant files like.
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -104,19 +94,12 @@ let g:javascript_plugin_flow = 1
 
 " deoplete code completion
 " let g:deoplete#enable_at_startup = 1
-"
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Set paths to homebrew pythons
-" I changed this for my Google machine
-" let g:python_host_prog = '/usr/bin/python'
-" let g:python3_host_prog = '/usr/bin/python3'
-
-" Googleset nocompatible
-source /usr/share/vim/google/google.vim
-filetype plugin indent on
-syntax on
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
 let dart_style_guide = 2
@@ -266,16 +249,6 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" coc shortcuts
-try
-    nmap <Leader>n :call CocAction('diagnosticNext')<cr>
-    nmap <Leader>N :call CocAction('diagnosticPrevious')<cr>
-endtry
-
-" lsc
-" set shortmess-=F
-" let g:lsc_server_commands = {'dart': 'dart_language_server'}
-
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
 Plug 'https://github.com/neomake/neomake.git'
@@ -303,10 +276,7 @@ endif
 Plug 'dart-lang/dart-vim-plugin'
 " I previously tried using lsc, but it makes nvim slow in big files.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
-" Plug 'natebosch/vim-lsc'
-" Plug 'natebosch/vim-lsc-dart'
 Plug 'altercation/vim-colors-solarized'
-"Plug 'w0rp/ale'
 Plug 'google/vim-searchindex'
 
 call plug#end()
