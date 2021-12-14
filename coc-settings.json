@@ -1,5 +1,5 @@
 {
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "snippets.userSnippetsDirectory": "~/AppData/Local/nvim/snips",
   "languageserver": {
     "dart": {
       "command": "dart",

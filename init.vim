@@ -36,7 +36,6 @@ nmap <silent> <c-l> :wincmd l<CR>
 
 " Colors!
 syntax enable
-set background=light
 
 " Copy to system clipboard by hitting leader first
 vnoremap  <leader>y  "+y
@@ -306,5 +305,5 @@ call plug#end()
 
 " Solarized colors
 syntax enable
-" set background=dark
-colorscheme solarized
+set background=dark
+" colorscheme solarized
