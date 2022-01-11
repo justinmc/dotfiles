@@ -290,7 +290,7 @@ else
 endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
 " I previously tried using lsc, but it makes nvim slow in big files.
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'flutter.trace.server': 'on', 'flutter.autoOpenDevLog': 'true'} " Also do: :CocInstall coc-flutter
@@ -318,7 +318,7 @@ let g:python3_host_prog='/usr/bin/python3'
 " autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " Press Tab to scroll _down_ a list of auto-completions
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " rustfmt on write using autoformat
 " autocmd BufWrite * :Autoformat
