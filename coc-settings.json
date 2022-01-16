@@ -1,5 +1,5 @@
 {
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "snippets.userSnippetsDirectory": "/home/justin/.config/nvim/snips",
   "languageserver": {
     "dart": {
       "command": "dart",
@@ -11,6 +11,14 @@
           "validation": {},
           "completion": {}
         }
+      }
+    },
+    "go": {
+      "command": "go-langserver",
+      "args": [],
+      "filetypes": ["go"],
+      "initializationOptions": {},
+      "settings": {
       }
     },
     "ccls": {

@@ -4,6 +4,7 @@
 " :PlugUpdate
 " :CocInstall coc-flutter
 " :CocInstall coc-snippets
+" :CocUpdate
 "
 " If you want to uninstall something, remove the line, run ":so %", then run
 " ":PlugClean"
@@ -298,6 +299,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'flutter.trace.server': 'on', 'f
 " Plug 'natebosch/vim-lsc-dart'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
+Plug 'ray-x/go.nvim'
 
 call plug#end()
 
