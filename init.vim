@@ -34,10 +34,6 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" Colors!
-syntax enable
-set background=light
-
 " Copy to system clipboard by hitting leader first
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -304,7 +300,8 @@ Plug 'google/vim-searchindex'
 
 call plug#end()
 
-" Solarized colors
+" Colors!
+" Note to self: Seems like on GLinux this has to match the terminal theme...
 syntax enable
-" set background=dark
-colorscheme solarized
+set background=light
+" colorscheme solarized
