@@ -3,7 +3,7 @@
   "languageserver": {
     "dart": {
       "command": "dart",
-      "args": ["/usr/local/google/home/jmccandless/Projects/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot", "--lsp", "--client-id coc-flutter", "--client-version 1.9.3"],
+      "args": ["/usr/local/google/home/jmccandless/Projects/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot", "--lsp", "--client-id coc-flutter"],
       "filetypes": ["dart"],
       "initializationOptions": {},
       "settings": {

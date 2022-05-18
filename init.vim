@@ -292,7 +292,7 @@ endif
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 " I previously tried using lsc, but it makes nvim slow in big files.
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter and coc-snippets
 " Plug 'natebosch/vim-lsc'
 " Plug 'natebosch/vim-lsc-dart'
 Plug 'altercation/vim-colors-solarized'
