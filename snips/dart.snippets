@@ -52,8 +52,7 @@ class $1 extends StatefulWidget {
 class _$1State extends State<$1> {
   @override
   void initState() {
-	super.initState();
-  }
+	super.initState(); }
 
   @override
   void dispose() {
@@ -75,4 +74,36 @@ try {
 } catch (error, stacktrace) {
   print(stacktrace);
 }
+endsnippet
+
+snippet dialog
+showDialog(
+  context: context,
+  builder: (BuildContext context) {
+	return AlertDialog(
+	  title: const Text('Dialog title'),
+	  content: const Text('Dialog body'),
+	  actions: <Widget>[
+		TextButton(
+		  style: TextButton.styleFrom(
+			textStyle: Theme.of(context).textTheme.labelLarge,
+		  ),
+		  child: const Text('Disable'),
+		  onPressed: () {
+			Navigator.of(context).pop();
+		  },
+		),
+		TextButton(
+		  style: TextButton.styleFrom(
+			textStyle: Theme.of(context).textTheme.labelLarge,
+		  ),
+		  child: const Text('Enable'),
+		  onPressed: () {
+			Navigator.of(context).pop();
+		  },
+		),
+	  ],
+	);
+  },
+);
 endsnippet
