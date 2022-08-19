@@ -102,19 +102,12 @@ let g:elm_syntastic_show_warnings = 1
 " flow syntax highlighting
 let g:javascript_plugin_flow = 1
 
-" deoplete code completion
-" let g:deoplete#enable_at_startup = 1
-"
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Set paths to homebrew pythons
 " let g:python_host_prog = '/usr/local/bin/python'
 " let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Dart
 let dart_style_guide = 2
-" autocmd FileType dart call deoplete#custom#buffer_option('auto_complete', v:false)
 
 " coc
 " Give more space for displaying messages.
@@ -133,13 +126,12 @@ else
   set signcolumn=yes
 endif
 " Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -153,7 +145,7 @@ else
 endif
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -287,13 +279,10 @@ Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
 Plug 'honza/vim-snippets'
 if has('nvim')
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  " Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dart-lang/dart-vim-plugin'
 " I previously tried using lsc, but it makes nvim slow in big files.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
@@ -306,5 +295,5 @@ call plug#end()
 
 " Solarized colors
 syntax enable
-" set background=dark
+set background=dark
 colorscheme solarized
