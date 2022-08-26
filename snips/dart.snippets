@@ -27,8 +27,8 @@
 snippet stless_full
 class $1 extends StatelessWidget {
   const $1({
-	Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +42,24 @@ endsnippet
 snippet stful_full
 class $1 extends StatefulWidget {
   const $1({
-	Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _$1State createState() => _$1State();
+  State<$1> createState() => _$1State();
 }
 
 class _$1State extends State<$1> {
   @override
   void initState() {
-	super.initState();
+    super.initState();
+    // Call super first.
   }
 
   @override
   void dispose() {
-	super.dispose();
+    // Call super last.
+    super.dispose();
   }
 
   @override
