@@ -27,7 +27,7 @@
 snippet stless_full
 class $1 extends StatelessWidget {
   const $1({
-		Key? key,
+	Key? key,
   }) : super(key: key);
 
   @override
@@ -42,11 +42,11 @@ endsnippet
 snippet stful_full
 class $1 extends StatefulWidget {
   const $1({
-		Key? key,
-  }) : super(key: key);
+		super.key,
+  });
 
 	@override
-	_$1State createState() => _$1State();
+	State<$1> createState() => _$1State();
 }
 
 class _$1State extends State<$1> {
@@ -66,5 +66,13 @@ class _$1State extends State<$1> {
       $2
     );
   }
+}
+endsnippet
+
+snippet stacktrace
+try {
+  throw FlutterError('Just doing this to get a stacktrace');
+} catch (error, stacktrace) {
+  print(stacktrace);
 }
 endsnippet

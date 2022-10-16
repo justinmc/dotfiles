@@ -69,6 +69,11 @@ let g:javascript_plugin_jsdoc = 1 " jsdoc syntax highlighting
 " disable folding
 set nofoldenable
 
+" [buffer number] followed by filename:
+set statusline=[%n]\ %t
+" show line#:column# on the right hand side
+set statusline+=%=%l:%c
+
 " ctrlp
 " Use ag for indexing, which is faster. Also, ignore irrelevant files like.
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -294,7 +299,7 @@ Plug 'dart-lang/dart-vim-plugin'
 " Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
 " I previously tried using lsc, but it makes nvim slow in big files.
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'flutter.trace.server': 'on', 'flutter.autoOpenDevLog': 'true'} " Also do: :CocInstall coc-flutter
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter
 " Plug 'natebosch/vim-lsc'
 " Plug 'natebosch/vim-lsc-dart'
 " Plug 'altercation/vim-colors-solarized'
