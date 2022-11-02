@@ -27,7 +27,7 @@
 snippet stless_full
 class $1 extends StatelessWidget {
   const $1({
-	super.key,
+    super.key,
   });
 
   @override
@@ -42,7 +42,7 @@ endsnippet
 snippet stful_full
 class $1 extends StatefulWidget {
   const $1({
-	Key? key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -53,19 +53,25 @@ class _$1State extends State<$1> {
   @override
   void initState() {
     // Call super first.
-	super.initState();
+    super.initState();
   }
 
   @override
   void didUpdateWidget($1 oldWidget) {
     // Call super first.
-	super.didUpdateWidget();
+    super.didUpdateWidget();
+  }
+
+  @override
+  void didUpdateWidget($1 oldWidget) {
+    // Call super first.
+    super.didUpdateWidget();
   }
 
   @override
   void dispose() {
     // Call super last.
-	super.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,30 +95,30 @@ snippet dialog
 showDialog(
   context: context,
   builder: (BuildContext context) {
-	return AlertDialog(
-	  title: const Text('Dialog title'),
-	  content: const Text('Dialog body'),
-	  actions: <Widget>[
-		TextButton(
-		  style: TextButton.styleFrom(
-			textStyle: Theme.of(context).textTheme.labelLarge,
-		  ),
-		  child: const Text('Disable'),
-		  onPressed: () {
-			Navigator.of(context).pop();
-		  },
-		),
-		TextButton(
-		  style: TextButton.styleFrom(
-			textStyle: Theme.of(context).textTheme.labelLarge,
-		  ),
-		  child: const Text('Enable'),
-		  onPressed: () {
-			Navigator.of(context).pop();
-		  },
-		),
-	  ],
-	);
+    return AlertDialog(
+      title: const Text('Dialog title'),
+      content: const Text('Dialog body'),
+      actions: <Widget>[
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: Theme.of(context).textTheme.labelLarge,
+          ),
+          child: const Text('Disable'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: Theme.of(context).textTheme.labelLarge,
+          ),
+          child: const Text('Enable'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
   },
 );
 endsnippet
