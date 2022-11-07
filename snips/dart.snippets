@@ -116,3 +116,16 @@ showDialog(
   },
 );
 endsnippet
+
+snippet platform_switch
+switch (defaultTargetPlatform) {
+  case TargetPlatform.iOS:
+  case TargetPlatform.macOS:
+  case TargetPlatform.android:
+  case TargetPlatform.fuchsia:
+  case TargetPlatform.linux:
+  case TargetPlatform.windows:
+	$1
+    break;
+}
+endsnippet
