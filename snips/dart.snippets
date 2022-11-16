@@ -42,8 +42,8 @@ endsnippet
 snippet stful_full
 class $1 extends StatefulWidget {
   const $1({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<$1> createState() => _$1State();
@@ -131,7 +131,7 @@ switch (defaultTargetPlatform) {
   case TargetPlatform.fuchsia:
   case TargetPlatform.linux:
   case TargetPlatform.windows:
-	$1
+    $1
     break;
 }
 endsnippet
