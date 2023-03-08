@@ -35,4 +35,7 @@
       }
     }
   }
+  // coc-flutter settings
+  //"dart.completeFunctionCalls": false
+  "flutter.runDevToolsAtStartup": true
 }
