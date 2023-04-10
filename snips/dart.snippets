@@ -52,14 +52,20 @@ class $1 extends StatefulWidget {
 class _$1State extends State<$1> {
   @override
   void initState() {
-    super.initState();
     // Call super first.
+    super.initState();
   }
 
   @override
   void didUpdateWidget($1 oldWidget) {
-    super.didUpdateWidget(oldWidget);
     // Call super first.
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didUpdateWidget($1 oldWidget) {
+    // Call super first.
+    super.didUpdateWidget();
   }
 
   @override
@@ -135,4 +141,48 @@ endsnippet
 
 snippet lorem_multiline
 Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr,\nsed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,\nsed diam voluptua.\nAt vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd gubergren,\nno sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+snippet dialog
+showDialog(
+  context: context,
+  builder: (BuildContext context) {
+    return AlertDialog(
+      title: const Text('Dialog title'),
+      content: const Text('Dialog body'),
+      actions: <Widget>[
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: Theme.of(context).textTheme.labelLarge,
+          ),
+          child: const Text('Disable'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: Theme.of(context).textTheme.labelLarge,
+          ),
+          child: const Text('Enable'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  },
+);
+endsnippet
+
+snippet platform_switch
+switch (defaultTargetPlatform) {
+  case TargetPlatform.iOS:
+  case TargetPlatform.macOS:
+  case TargetPlatform.android:
+  case TargetPlatform.fuchsia:
+  case TargetPlatform.linux:
+  case TargetPlatform.windows:
+    $1
+    break;
+}
 endsnippet
