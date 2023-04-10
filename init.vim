@@ -127,7 +127,6 @@ Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
-Plug 'honza/vim-snippets'
 Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
 Plug 'dart-lang/dart-vim-plugin'
@@ -143,8 +142,9 @@ endif
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Also do: :CocInstall coc-flutter and coc-snippets
 " Then coc I couldn't get fully working, like autocompletion of fn params.
 " So here I'm trying lsp:
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
+" Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
@@ -152,6 +152,8 @@ Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
 Plug 'L3MON4D3/LuaSnip' " Snippets plugin
 Plug 'akinsho/flutter-tools.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 call plug#end()
 
@@ -163,12 +165,15 @@ colorscheme solarized
 
 lua <<EOF
 
+require("trouble").setup {
+}
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>N', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>n', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
@@ -185,16 +190,16 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
+  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -225,12 +230,22 @@ lspconfig['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
+--[[
+lspconfig['dartls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+]]--
 require("flutter-tools").setup{
     lsp = {
         on_attach = on_attach,
         flags = lsp_flags,
         capabilities = capabilities,
-    }
+        settings = {
+          analysisExcludedFolders = {},
+        },
+    },
 }
 
 -- luasnip setup
