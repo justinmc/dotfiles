@@ -142,7 +142,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
-Plug 'L3MON4D3/LuaSnip' " Snippets plugin
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*', 'do': 'make install_jsregexp'}
 Plug 'akinsho/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -242,6 +242,7 @@ require("flutter-tools").setup{
 
 -- luasnip setup
 local luasnip = require 'luasnip'
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = {"./snips"} })
 
 -- nvim-cmp setup
 local cmp = require 'cmp'

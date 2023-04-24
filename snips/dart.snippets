@@ -1,95 +1,92 @@
 # A valid snippet should starts with:
 #
-#		snippet trigger_word [ "description" [ options ] ]
+#        snippet trigger_word [ "description" [ options ] ]
 #
 # and end with:
 #
-#		endsnippet
+#        endsnippet
 #
 # Snippet options:
 #
-#		b - Beginning of line.
-#		i - In-word expansion.
-#		w - Word boundary.
-#		r - Regular expression
-#		e - Custom context snippet
-#		A - Snippet will be triggered automatically, when condition matches.
+#        b - Beginning of line.
+#        i - In-word expansion.
+#        w - Word boundary.
+#        r - Regular expression
+#        e - Custom context snippet
+#        A - Snippet will be triggered automatically, when condition matches.
 #
 # Basic example:
 #
-#		snippet emitter "emitter properties" b
-#		private readonly ${1} = new Emitter<$2>()
-#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
-#		endsnippet
+#        snippet emitter "emitter properties" b
+#        private readonly ${1} = new Emitter<$2>()
+#        public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#        endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet stless_full
-class $1 extends StatelessWidget {
-  const $1({
-    super.key,
-  });
+  class $1 extends StatelessWidget {
+    const $1({
+      super.key,
+    });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      $2
-    );
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+        $2
+      );
+    }
   }
-}
-endsnippet
 
 snippet stful_full
-class $1 extends StatefulWidget {
-  const $1({
-    super.key,
-  });
+  class $1 extends StatefulWidget {
+    const $1({
+      super.key,
+    });
 
-  @override
-  State<$1> createState() => _$1State();
-}
-
-class _$1State extends State<$1> {
-  @override
-  void initState() {
-    // Call super first.
-    super.initState();
+    @override
+    State<$1> createState() => _$1State();
   }
 
-  @override
-  void didUpdateWidget($1 oldWidget) {
-    // Call super first.
-    super.didUpdateWidget(oldWidget);
-  }
+  class _$1State extends State<$1> {
+    @override
+    void initState() {
+      // Call super first.
+      super.initState();
+    }
 
-  @override
-  void didUpdateWidget($1 oldWidget) {
-    // Call super first.
-    super.didUpdateWidget();
-  }
+    @override
+    void didUpdateWidget($1 oldWidget) {
+      // Call super first.
+      super.didUpdateWidget(oldWidget);
+    }
 
-  @override
-  void dispose() {
-    // Call super last.
-    super.dispose();
-  }
+    @override
+    void didUpdateWidget($1 oldWidget) {
+      // Call super first.
+      super.didUpdateWidget();
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      $2
-    );
+    @override
+    void dispose() {
+      // Call super last.
+      super.dispose();
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+        $2
+      );
+    }
   }
-}
-endsnippet
 
 snippet stacktrace
-try {
-  throw FlutterError('Just doing this to get a stacktrace');
-} catch (error, stacktrace) {
-  print(stacktrace);
-}
-endsnippet
+  try {
+    throw FlutterError('Just doing this to get a stacktrace');
+  } catch (error, stacktrace) {
+    print(stacktrace);
+  }
 
 snippet simplest
 import 'package:flutter/material.dart';
@@ -143,46 +140,44 @@ snippet lorem_multiline
 Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr,\nsed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,\nsed diam voluptua.\nAt vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd gubergren,\nno sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 snippet dialog
-showDialog(
-  context: context,
-  builder: (BuildContext context) {
-    return AlertDialog(
-      title: const Text('Dialog title'),
-      content: const Text('Dialog body'),
-      actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Dialog title'),
+        content: const Text('Dialog body'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Disable'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          child: const Text('Disable'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Enable'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          child: const Text('Enable'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
-    );
-  },
-);
-endsnippet
+        ],
+      );
+    },
+  );
 
 snippet platform_switch
-switch (defaultTargetPlatform) {
-  case TargetPlatform.iOS:
-  case TargetPlatform.macOS:
-  case TargetPlatform.android:
-  case TargetPlatform.fuchsia:
-  case TargetPlatform.linux:
-  case TargetPlatform.windows:
-    $1
-    break;
-}
-endsnippet
+  switch (defaultTargetPlatform) {
+    case TargetPlatform.iOS:
+    case TargetPlatform.macOS:
+    case TargetPlatform.android:
+    case TargetPlatform.fuchsia:
+    case TargetPlatform.linux:
+    case TargetPlatform.windows:
+      $1
+      break;
+  }
