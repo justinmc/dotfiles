@@ -82,11 +82,7 @@ snippet stful_full
   }
 
 snippet stacktrace
-  try {
-    throw FlutterError('Just doing this to get a stacktrace');
-  } catch (error, stacktrace) {
-    print(stacktrace);
-  }
+  print(StackTrace.current);
 
 snippet dialog
   showDialog(
@@ -128,5 +124,7 @@ snippet platform_switch
     case TargetPlatform.linux:
     case TargetPlatform.windows:
       $1
-      break;
   }
+
+snippet lorem
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
