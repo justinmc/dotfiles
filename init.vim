@@ -127,7 +127,9 @@ Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'overcache/NeoSolarized'
+Plug 'git@github.com:lifepillar/vim-solarized8.git', { 'branch' : 'neovim' }
 Plug 'google/vim-searchindex'
 Plug 'dart-lang/dart-vim-plugin'
 if has('nvim')
@@ -147,10 +149,11 @@ endif
 " Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'stevearc/dressing.nvim' " optional for vim.ui.select for flutter-tools.
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*', 'do': 'make install_jsregexp'}
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replace <CurrentMajor> by the latest released major (first number of latest release)
 Plug 'akinsho/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -161,7 +164,9 @@ call plug#end()
 " Note to self: Seems like on GLinux this has to match the terminal theme...
 syntax enable
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+" colorscheme solarized8
+autocmd vimenter * ++nested colorscheme solarized8
 
 lua <<EOF
 
@@ -230,15 +235,19 @@ lspconfig['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
---[[
-lspconfig['dartls'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-}
-]]--
 require("flutter-tools").setup{
     lsp = {
+        dev_log = {
+          enabled = true,
+          notify_errors = false,
+          open_cmd = "tabedit",
+        },
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+        settings = {
+          analysisExcludedFolders = {},
+        },
         on_attach = on_attach,
         flags = lsp_flags,
         capabilities = capabilities,
