@@ -62,12 +62,6 @@ snippet stful_full
     }
 
     @override
-    void didUpdateWidget($1 oldWidget) {
-      // Call super first.
-      super.didUpdateWidget();
-    }
-
-    @override
     void dispose() {
       // Call super last.
       super.dispose();
@@ -82,7 +76,7 @@ snippet stful_full
   }
 
 snippet stacktrace
-  print('justin stacktrace: ${Stacktrace.current}');
+  print(StackTrace.current); // in dart:core
 
 snippet simplest
   import 'package:flutter/material.dart';
