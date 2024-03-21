@@ -44,6 +44,10 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
+" Format comments to match line length with gw in visual mode.
+set textwidth=80
+set formatoptions=acq
+
 " Remap escape
 imap jk <Esc>
 
