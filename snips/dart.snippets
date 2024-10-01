@@ -149,3 +149,25 @@ snippet build
 	Widget build(BuildContext context) {
 		return $1;
 	}
+
+snippet createState
+	@override
+	State<$1> createState() => $1State();
+
+snippet TextButton
+  TextButton(
+    onPressed: () {
+      $1
+    },
+    child: $2,
+  ),
+
+snippet WidgetsApp
+  WidgetsApp(
+	color: Colors.red,
+	localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+	  DefaultMaterialLocalizations.delegate,
+	],
+	title: 'Example',
+	home: $1,
+  ),
