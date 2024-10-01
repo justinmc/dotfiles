@@ -46,7 +46,7 @@ vnoremap <leader>P "+P
 
 " Format comments to match line length with gw in visual mode.
 set textwidth=80
-set formatoptions=acq
+set formatoptions=q
 
 " Remap escape
 imap jk <Esc>
@@ -54,9 +54,9 @@ imap jk <Esc>
 " react to the mouse as well
 set mouse=a
 
-" eslint
-let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost,BufEnter * Neomake
+" eslint. Justin disabled because slowing down saving non-JS files.
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" autocmd! BufWritePost,BufEnter * Neomake
 nmap <Leader>n :lnext<CR> " next error/warning
 nmap <Leader>N :lprev<CR> " previous error/warning
 
@@ -120,13 +120,14 @@ let dart_style_guide = 2
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
-Plug 'https://github.com/neomake/neomake.git'
-Plug 'https://github.com/airblade/vim-gitgutter.git'
+" Justin disabled neomake because it's slowing down saving non-JS files.
+" Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'pangloss/vim-javascript'
 Plug 'https://github.com/hail2u/vim-css3-syntax.git'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
@@ -150,6 +151,7 @@ endif
 " Plug 'natebosch/vim-lsc-dart'
 " Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
@@ -168,6 +170,8 @@ set background=dark
 colorscheme solarized
 
 lua <<EOF
+
+require('gitsigns').setup()
 
 require("trouble").setup {
 }
@@ -220,7 +224,7 @@ lspconfig['pyright'].setup{
     flags = lsp_flags,
     capabilities = capabilities,
 }
-lspconfig['tsserver'].setup{
+lspconfig['ts_ls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
