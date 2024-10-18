@@ -86,9 +86,6 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
-" call greppage on the current line
-nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
-
 " use vim-jsx on .js files too
 let g:jsx_ext_required = 0
 
