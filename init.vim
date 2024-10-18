@@ -71,6 +71,7 @@ set statusline=[%n]\ %t
 " show line#:column# on the right hand side
 set statusline+=%=%l:%c
 
+" TODO(justinmc): Use rg and Telescope instead.
 " ctrlp
 " Use ag for indexing, which is faster. Also, ignore irrelevant files like.
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -156,6 +157,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'stevearc/dressing.nvim' " optional for vim.ui.select for flutter-tools.
+" TODO(justinmc): Completion is often very slow in practice. This seems to be
+" the completion plugin of choice, so it's probably my config's fault.
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
@@ -175,6 +178,13 @@ set background=dark
 autocmd vimenter * ++nested colorscheme solarized8
 
 lua <<EOF
+
+local config = {
+    cmd = {'/usr/local/google/home/jmccandless/bin/jdt-language-server-1.9.0-202203031534/bin/jdtls'},
+    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+}
+-- Justin: This was starting even when opening dart files, so I disabled for now.
+ require('jdtls').start_or_attach(config)
 
 require('gitsigns').setup()
 
@@ -213,6 +223,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
 end
 
 -- Add additional capabilities supported by nvim-cmp
