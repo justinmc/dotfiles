@@ -71,17 +71,11 @@ set statusline=[%n]\ %t
 " show line#:column# on the right hand side
 set statusline+=%=%l:%c
 
-" ctrlp
-" Use ag for indexing, which is faster. Also, ignore irrelevant files like.
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
-" Use ctrlp-py-matcher, which is more accurate.
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -115,8 +109,9 @@ let dart_style_guide = 2
 " set shortmess-=F
 " let g:lsc_server_commands = {'dart': 'dart_language_server'}
 
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Justin disabled neomake because it's slowing down saving non-JS files.
 " Plug 'https://github.com/neomake/neomake.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
@@ -131,7 +126,8 @@ Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
 Plug 'altercation/vim-colors-solarized'
 Plug 'google/vim-searchindex'
-Plug 'dart-lang/dart-vim-plugin'
+" Removed dart-vim-plugin because syntax highlighting is now done with tree-sitter.
+" Plug 'dart-lang/dart-vim-plugin'
 if has('nvim')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -148,8 +144,10 @@ endif
 " Plug 'natebosch/vim-lsc-dart'
 " Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
-Plug 'mfussenegger/nvim-jdtls'
-Plug 'nvim-lua/plenary.nvim'
+" Plug 'mfussenegger/nvim-jdtls'
+Plug 'stevearc/dressing.nvim' " optional for vim.ui.select for flutter-tools.
+" TODO(justinmc): Completion is often very slow in practice. This seems to be
+" the completion plugin of choice, so it's probably my config's fault.
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
@@ -167,6 +165,13 @@ set background=dark
 colorscheme solarized
 
 lua <<EOF
+
+-- local config = {
+--     cmd = {'/usr/local/google/home/jmccandless/bin/jdt-language-server-1.9.0-202203031534/bin/jdtls'},
+--     root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+-- }
+-- Justin: This was starting even when opening dart files, so I disabled for now.
+-- require('jdtls').start_or_attach(config)
 
 require('gitsigns').setup()
 
@@ -205,6 +210,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+--   nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
 end
 
 -- Add additional capabilities supported by nvim-cmp
