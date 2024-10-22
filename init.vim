@@ -131,6 +131,8 @@ Plug 'vim-scripts/loremipsum'
 " Plug 'overcache/NeoSolarized'
 Plug 'git@github.com:lifepillar/vim-solarized8.git', { 'branch' : 'neovim' }
 Plug 'google/vim-searchindex'
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " Removed dart-vim-plugin because syntax highlighting is now done with tree-sitter.
 " Plug 'dart-lang/dart-vim-plugin'
 if has('nvim')
@@ -154,12 +156,17 @@ Plug 'stevearc/dressing.nvim' " optional for vim.ui.select for flutter-tools.
 " TODO(justinmc): Completion is often very slow in practice. This seems to be
 " the completion plugin of choice, so it's probably my config's fault.
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
-Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replace <CurrentMajor> by the latest released major (first number of latest release)
 Plug 'akinsho/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+Plug 'folke/which-key.nvim'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 
@@ -316,5 +323,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+require("ibl").setup()
+require('which-key').setup()
+require('nvim-autopairs').setup()
 
 EOF
