@@ -9,6 +9,7 @@
 set number
 set ignorecase
 set smartcase
+set smartindent
 set scrolloff=12 " space between cursor and bottom of screen before scroll
 let mapleader = ","
 
@@ -156,13 +157,15 @@ Plug 'stevearc/dressing.nvim' " optional for vim.ui.select for flutter-tools.
 " TODO(justinmc): Completion is often very slow in practice. This seems to be
 " the completion plugin of choice, so it's probably my config's fault.
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
-Plug 'hrsh7th/cmp-buffer'
+" Justin - This is suspcious for performance problems, so I'm disabling it for
+" now. However, I'm totally not convinced that it is the problem.
+" Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replace <CurrentMajor> by the latest released major (first number of latest release)
-Plug 'akinsho/flutter-tools.nvim'
+Plug 'nvim-flutter/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/which-key.nvim'
@@ -201,6 +204,7 @@ vim.keymap.set('n', '<leader>n', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
+
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -257,6 +261,7 @@ lspconfig['rust_analyzer'].setup{
     }
 }
 require("flutter-tools").setup{
+    -- TODO(justinmc): Is there anything you can do to improve performance here?
     lsp = {
         dev_log = {
           enabled = true,
@@ -321,6 +326,16 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  },
+  -- Justin - I'm not clear if or how much this stuff helps performance.
+  -- I think that completion can't happen if the flutter linter thing hasn't
+  -- finished running. Maybe that's more to do with my problems?
+  performance = {
+    max_view_entries = 7,
+    async_budget = 100,
+    fetching_timeout = 100,
+    throttle = 50,
+    debounce = 50,
   },
 }
 
