@@ -165,6 +165,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
@@ -320,7 +321,6 @@ cmp.setup {
   -- I think that completion can't happen if the flutter linter thing hasn't
   -- finished running. Maybe that's more to do with my problems?
   performance = {
-    max_view_entries = 7,
     async_budget = 100,
     fetching_timeout = 100,
     throttle = 50,
