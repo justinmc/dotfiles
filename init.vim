@@ -72,9 +72,6 @@ set statusline=[%n]\ %t
 " show line#:column# on the right hand side
 set statusline+=%=%l:%c
 
-" vim-plug
-call plug#begin('~/.vim/plugged')
-
 " call greppage on the current line
 nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
 
@@ -112,6 +109,9 @@ let dart_style_guide = 2
 " lsc
 " set shortmess-=F
 " let g:lsc_server_commands = {'dart': 'dart_language_server'}
+
+" vim-plug
+call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
