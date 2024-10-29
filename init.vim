@@ -110,6 +110,9 @@ let dart_style_guide = 2
 " set shortmess-=F
 " let g:lsc_server_commands = {'dart': 'dart_language_server'}
 
+" vim-plug
+call plug#begin('~/.vim/plugged')
+
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
