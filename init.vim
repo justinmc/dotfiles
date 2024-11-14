@@ -128,7 +128,7 @@ Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
-Plug 'altercation/vim-colors-solarized'
+Plug 'maxmx03/solarized.nvim'
 Plug 'google/vim-searchindex'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
