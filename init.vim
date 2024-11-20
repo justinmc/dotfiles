@@ -192,6 +192,18 @@ require('gitsigns').setup()
 require("trouble").setup {
 }
 
+require("telescope").setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-p>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Up>"] = require("telescope.actions").cycle_history_prev
+      }
+    }
+  },
+}
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -293,6 +305,7 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
     ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
@@ -300,7 +313,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -336,8 +349,11 @@ cmp.setup {
   },
 }
 
-require("ibl").setup()
+require('ibl').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
+require('nvim-treesitter.configs').setup({
+  indent = { enable = true },
+})
 
 EOF
