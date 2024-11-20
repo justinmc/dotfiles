@@ -72,9 +72,6 @@ set statusline=[%n]\ %t
 " show line#:column# on the right hand side
 set statusline+=%=%l:%c
 
-" call greppage on the current line
-nnoremap <leader>kk :call grepg#RunGrepGCommand(getline('.'))<CR>
-
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -128,9 +125,7 @@ Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'overcache/NeoSolarized'
-Plug 'git@github.com:lifepillar/vim-solarized8.git', { 'branch' : 'neovim' }
+Plug 'maxmx03/solarized.nvim'
 Plug 'google/vim-searchindex'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
@@ -164,8 +159,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replace <CurrentMajor> by the latest released major (first number of latest release)
-Plug 'nvim-flutter/flutter-tools.nvim'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
+Plug 'akinsho/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/which-key.nvim'
@@ -194,6 +189,18 @@ lua <<EOF
 require('gitsigns').setup()
 
 require("trouble").setup {
+}
+
+require("telescope").setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-p>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Up>"] = require("telescope.actions").cycle_history_prev
+      }
+    }
+  },
 }
 
 -- Mappings.
@@ -301,6 +308,7 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
     ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
@@ -308,7 +316,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -344,8 +352,11 @@ cmp.setup {
   },
 }
 
-require("ibl").setup()
+require('ibl').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
+require('nvim-treesitter.configs').setup({
+  indent = { enable = true },
+})
 
 EOF
