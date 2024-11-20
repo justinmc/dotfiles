@@ -175,6 +175,7 @@ call plug#end()
 " Colors!
 " Note to self: Seems like on GLinux this has to match the terminal theme...
 syntax enable
+set termguicolors
 set background=dark
 colorscheme solarized
 
