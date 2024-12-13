@@ -221,3 +221,8 @@ snippet WidgetsApp
 	title: 'Example',
 	home: $1,
   ),
+
+snippet postFrameCallback
+  ScheduleBinding.instance.addPostFrameCallback((Duration duration) {
+	$1
+  });
