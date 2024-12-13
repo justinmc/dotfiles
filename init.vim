@@ -190,8 +190,8 @@ require("telescope").setup {
     mappings = {
       i = {
         ["<C-p>"] = require("telescope.actions").cycle_history_next,
-        ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-        ["<C-Up>"] = require("telescope.actions").cycle_history_prev
+        ["<A-Down>"] = require("telescope.actions").cycle_history_next,
+        ["<A-Up>"] = require("telescope.actions").cycle_history_prev
       }
     }
   },
