@@ -2,6 +2,7 @@
 " :so %
 " :PlugInstall
 " :PlugUpdate
+" :TSUpdate?
 "
 " If you want to uninstall something, remove the line, run ":so %", then run
 " ":PlugClean"
@@ -167,6 +168,8 @@ Plug 'folke/which-key.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'AndrewRadev/splitjoin.vim'
 
+Plug 'sso://user/piloto/cmp-nvim-ciderlsp'
+
 call plug#end()
 
 " Colors!
@@ -251,6 +254,13 @@ end
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- Justin added this for cmp-nvim-ciderlsp.
+-- See https://user.git.corp.google.com/piloto/cmp-nvim-ciderlsp/.
+capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
+require('cmp_nvim_ciderlsp').setup({
+  override_trigger_characters = true
+})
+
 local lspconfig = require('lspconfig')
 
 local lsp_flags = {
@@ -304,6 +314,18 @@ local luasnip = require 'luasnip'
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = {"./snips"} })
 
 -- nvim-cmp setup
+local source_names = {
+  nvim_lsp = "(LSP)",
+  emoji = "(Emoji)",
+  path = "(Path)",
+  calc = "(Calc)",
+  cmp_tabnine = "(Tabnine)",
+  vsnip = "(Snippet)",
+  luasnip = "(Snippet)",
+  buffer = "(Buffer)",
+  tmux = "(TMUX)",
+  nvim_ciderlsp = "(ML-Autocompletion!)"
+}
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require 'cmp'
 cmp.event:on(
@@ -348,6 +370,16 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_ciderlsp' },
+  },
+  -- Justin for cmp-nvim-ciderlsp.
+  -- See https://user.git.corp.google.com/piloto/cmp-nvim-ciderlsp/.
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      vim_item.menu = source_names[entry.source.name]
+      return vim_item
+    end
   },
   -- Justin - I'm not clear if or how much this stuff helps performance.
   -- I think that completion can't happen if the flutter linter thing hasn't
