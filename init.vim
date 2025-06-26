@@ -155,7 +155,7 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
-Plug 'akinsho/flutter-tools.nvim'
+Plug 'nvim-flutter/flutter-tools.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/which-key.nvim'
@@ -271,13 +271,6 @@ lspconfig['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
---[[
-lspconfig['dartls'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-}
-]]--
 require("flutter-tools").setup{
     -- TODO(justinmc): Is there anything you can do to improve performance here?
     lsp = {
@@ -285,6 +278,7 @@ require("flutter-tools").setup{
         flags = lsp_flags,
         capabilities = capabilities,
         settings = {
+          -- Without this, it wouldn't run when developing flutter/flutter itself.
           analysisExcludedFolders = {},
         },
     },
