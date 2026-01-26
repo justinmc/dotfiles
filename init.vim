@@ -261,23 +261,23 @@ require('cmp_nvim_ciderlsp').setup({
   override_trigger_characters = true
 })
 
-local lspconfig = require('lspconfig')
-
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-lspconfig['pyright'].setup{
+vim.lsp.config('pyright', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-}
-lspconfig['ts_ls'].setup{
+})
+vim.lsp.enable('pyright')
+vim.lsp.config('ts_ls', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-}
-lspconfig['rust_analyzer'].setup{
+})
+vim.lsp.enable('ts_ls')
+vim.lsp.config('rust_analyzer', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
@@ -285,7 +285,8 @@ lspconfig['rust_analyzer'].setup{
     settings = {
       ["rust-analyzer"] = {}
     }
-}
+})
+vim.lsp.enable('rust_analyzer')
 require("flutter-tools").setup{
     -- TODO(justinmc): Is there anything you can do to improve performance here?
     lsp = {
