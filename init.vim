@@ -128,7 +128,7 @@ Plug 'elmcast/elm-vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'flowtype/vim-flow'
 Plug 'vim-scripts/loremipsum'
-Plug 'altercation/vim-colors-solarized'
+Plug 'maxmx03/solarized.nvim'
 Plug 'google/vim-searchindex'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
@@ -178,6 +178,7 @@ call plug#end()
 " Colors!
 " Note to self: Seems like on GLinux this has to match the terminal theme...
 syntax enable
+set termguicolors
 set background=dark
 " colorscheme solarized
 
@@ -214,6 +215,18 @@ require('gitsigns').setup()
 require("trouble").setup {
 }
 
+require("telescope").setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-p>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+        ["<C-Up>"] = require("telescope.actions").cycle_history_prev
+      }
+    }
+  },
+}
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -247,6 +260,15 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  vim.api.nvim_create_augroup('AutoFormatting', {})
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.dart',
+    group = 'AutoFormatting',
+    callback = function()
+      vim.lsp.buf.format({ async = true })
+    end,
+  })
 
 --   nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
 end
@@ -315,6 +337,7 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
     ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
@@ -322,7 +345,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -358,8 +381,11 @@ cmp.setup {
   },
 }
 
-require("ibl").setup()
+require('ibl').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
+require('nvim-treesitter.configs').setup({
+  indent = { enable = true },
+})
 
 EOF
