@@ -161,6 +161,7 @@ Plug 'folke/trouble.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'f-person/auto-dark-mode.nvim'
 
 call plug#end()
 
