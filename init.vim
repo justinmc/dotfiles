@@ -169,7 +169,7 @@ call plug#end()
 " Note to self: Seems like on GLinux this has to match the terminal theme...
 syntax enable
 set termguicolors
-set background=dark
+" set background=dark
 colorscheme solarized
 
 lua <<EOF
@@ -247,23 +247,22 @@ end
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require('lspconfig')
-
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-lspconfig['pyright'].setup{
+vim.lsp.config('pyright', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-}
-lspconfig['ts_ls'].setup{
+})
+vim.lsp.config('ts_ls', {
+-- vim.lsp.config('tsserver', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-}
-lspconfig['rust_analyzer'].setup{
+})
+vim.lsp.config('rust_analyzer', {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
@@ -271,7 +270,14 @@ lspconfig['rust_analyzer'].setup{
     settings = {
       ["rust-analyzer"] = {}
     }
-}
+})
+--[[
+vim.lsp.config('dartls', {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+})
+]]--
 require("flutter-tools").setup{
     -- TODO(justinmc): Is there anything you can do to improve performance here?
     lsp = {
@@ -349,8 +355,8 @@ cmp.setup {
 require('ibl').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter').setup {
   indent = { enable = true },
-})
+}
 
 EOF
